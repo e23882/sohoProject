@@ -127,10 +127,8 @@ namespace MahAppBase.ViewModel
 
         private void SendRecordCommandAction()
         {
-            throw new NotImplementedException();
+            MainReadingContent = "正在便是你的語音，請稍後。。。。。";
         }
-
-
         
         private void PlayRecordCommandAction()
         {
@@ -153,11 +151,12 @@ namespace MahAppBase.ViewModel
                     PlayRecordingInstance.Stop();
                 });
                 th.Start();
-                
-                
             }
-            
-            
+        }
+
+        private void SaveRecoreToFile()
+        {
+           
         }
 
         private void PlayRecordingInstance_PlaybackStopped(object sender, StoppedEventArgs e)
@@ -183,6 +182,8 @@ namespace MahAppBase.ViewModel
                 // 開始錄音
                 waveIn.StartRecording();
                 RecordButtonContent = "停止錄音";
+                
+
             }
             else 
             {
@@ -190,6 +191,7 @@ namespace MahAppBase.ViewModel
                 StartRecord.Stop();
                 RecordButtonContent = "開始錄音";
                 RecordIsNotPlaying = true;
+                SaveRecoreToFile();
             }
             
         }

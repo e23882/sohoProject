@@ -64,3 +64,4 @@ C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\obj\Debug\CustomerUse
 C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\obj\Debug\CustomerUserControl\ucLogin.baml
 C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\bin\Debug\NAudio.dll
 C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\bin\Debug\NAudio.xml
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\bin\Debug\System.Drawing.Common.dll

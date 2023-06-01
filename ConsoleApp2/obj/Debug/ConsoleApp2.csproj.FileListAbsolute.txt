@@ -1,0 +1,10 @@
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\bin\Debug\ConsoleApp2.exe.config
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\bin\Debug\ConsoleApp2.exe
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\bin\Debug\ConsoleApp2.pdb
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\bin\Debug\NAudio.dll
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\bin\Debug\NAudio.xml
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.AssemblyReference.cache
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\obj\Debug\ConsoleApp2.csproj.CopyComplete
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\obj\Debug\ConsoleApp2.exe
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\ConsoleApp2\obj\Debug\ConsoleApp2.pdb

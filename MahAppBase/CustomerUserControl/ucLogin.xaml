@@ -28,15 +28,15 @@
             <TextBlock Text="輸入課程資料以及ID" FontSize="25" TextAlignment="Center"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                 <TextBlock Text="書本名稱" Width="100"/>
-                <TextBox Text="Reading_Voyage_1" Width="200"/>
+                <TextBox Text="Reading_Voyage_1" Width="200" x:Name="tbBook"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                 <TextBlock Text="單　　元" Width="100"/>
-                <TextBox Text="Unit15" Width="200"/>
+                <TextBox Text="Unit15" Width="200" x:Name="tbLesson"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                 <TextBlock Text="登入使用者名稱" Width="100"/>
-                <TextBox Text="TEST" Width="200"/>
+                <TextBox Text="TEST" Width="200" x:Name="tbStudent"/>
             </StackPanel>
             <Button Content="確認登入" Grid.Row="4" Margin="0,20,0,0" Width="150" FontSize="15" x:Name="btLogin" Click="btLogin_Click"/>
         </Grid>

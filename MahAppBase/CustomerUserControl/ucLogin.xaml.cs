@@ -27,7 +27,7 @@ namespace MahAppBase
         private void btLogin_Click(object sender, RoutedEventArgs e)
         {
             
-            MainWindow main = new MainWindow();
+            MainWindow main = new MainWindow(tbBook.Text, tbLesson.Text, tbStudent.Text);
             main.Show();
             this.Close();
         }

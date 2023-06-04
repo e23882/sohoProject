@@ -11,44 +11,60 @@
         Title="" Height="600" Width="800" Closed="MetroWindow_Closed">
     <Window.Resources>
         <viewModel:Status x:Key="Status"/>
-        <viewModel:MainComponent x:Key="MainComponent"/>
     </Window.Resources>
-    <controls:MetroWindow.RightWindowCommands >
-        <controls:WindowCommands DataContext="{Binding Source={StaticResource MainComponent}}">
-            <Button Command="{Binding ButtonDonateClick}">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="24" Height="24" Kind="Beer" />
-                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="Donate Developer" />
-                </StackPanel>
-            </Button>
-            <Button Content="Settings"/>
-        </controls:WindowCommands>
-    </controls:MetroWindow.RightWindowCommands>
-    <Grid DataContext="{Binding Source={StaticResource MainComponent}}">
+    
+    <Grid x:Name="gdMain">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <controls:MetroAnimatedTabControl Grid.Row="0">
-            <controls:MetroTabItem Header="TabItem1">
+            <controls:MetroTabItem Header="錄音" IsSelected="{Binding Step1Selected}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding MainReadingContent}" Grid.Row="0"/>
+                    <TextBox Text="{Binding MainReadingContent}" Grid.Row="0"/>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10">
-                        <Button Content="{Binding RecordButtonContent}" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding StartRecordCommand}"/>
+                        <Button Content="{Binding RecordButtonContent}" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding StartRecordCommand}" IsEnabled="{Binding ButtonEnable}"/>
                         <Button Content="{Binding PlayRecordContent}" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding PlayRecordCommand}" IsEnabled="{Binding RecordIsNotPlaying}"/>
-                        <Button Content="送出錄音" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding SendRecordCommand}"/>
-                        <Button Content="查看診斷報告" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding CheckReportCommand}"/>
-                        <Button Content="前往治療階段" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding GoNextCommand}"/>
+                        <Button Content="送出錄音" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding SendRecordCommand}" IsEnabled="{Binding ButtonEnable}"/>
+                        <Button Content="查看診斷報告" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding CheckReportCommand}" IsEnabled="{Binding ButtonEnable}"/>
+                        <Button Content="前往治療階段" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding GoNextCommand}" IsEnabled="{Binding ButtonEnable}"/>
                     </StackPanel>
                 </Grid>
             </controls:MetroTabItem>
-            <controls:MetroTabItem Header="TabItem2">
-            </controls:MetroTabItem>
-            <controls:MetroTabItem Header="TabItem3">
+            <controls:MetroTabItem Header="治療階段" IsSelected="{Binding Step2Selected}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="辨識的結果"/>
+                        <TextBox Text="{Binding KnowledgeResult}" MinHeight="150"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" >
+                        <TextBlock Text="正確的課文"/>
+                        <TextBox Text="{Binding AccurateResult}" MinHeight="150"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="換課文" Margin="0,0,0,0" FontSize="15" Padding="15,3" Command="{Binding ChangeTextCommand}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,10">
+                        <Button Content="{Binding RecordButtonContent}" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding StartDiagnosisRecordCommand}" IsEnabled="{Binding ButtonEnable}"/>
+                        <Button Content="{Binding PlayRecordContent}" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding PlayRecordCommand}" IsEnabled="{Binding RecordIsNotPlaying}"/>
+                        <Button Content="{Binding StartDiagnosisContent}" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding StartDiagnosisCommand}"/>
+                        <Button Content="三次後跳過/全對" Margin="10,0" FontSize="15" Padding="15,3" Command="{Binding ThreeTimesCorrectCommand}" IsEnabled="{Binding ButtonEnable}"/>
+                        <TextBlock Text="{Binding CurrentStep}" FontSize="20" Margin="30,0,0,0" FontWeight="Bold"/>
+                        <TextBlock Text=" / " FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding TotalStep}" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="   進度" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                </Grid>
             </controls:MetroTabItem>
         </controls:MetroAnimatedTabControl>
         <StatusBar DataContext="{Binding Source={StaticResource Status}}" Grid.Row="1">

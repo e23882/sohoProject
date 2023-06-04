@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MahAppBase"
         mc:Ignorable="d"
-        Title="ucLogin" Height="300" Width="600">
+        Title="登入" Height="300" Width="600">
     <Grid>
         
         <Grid.RowDefinitions>

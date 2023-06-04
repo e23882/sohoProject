@@ -175,3 +175,4 @@ C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\obj\Debug\MahAppBase.
 C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\obj\Debug\MahAppBase.csproj.CopyComplete
 C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\obj\Debug\MahAppBase.exe
 C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\obj\Debug\MahAppBase.pdb
+C:\Users\USER\Desktop\外包\123\WPFMahAppsBase\MahAppBase\obj\Debug\MahAppBase.csproj.AssemblyReference.cache

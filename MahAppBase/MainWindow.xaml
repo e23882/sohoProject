@@ -44,12 +44,28 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0">
-                        <TextBlock Text="辨識的結果"/>
-                        <TextBox Text="{Binding KnowledgeResult}" MinHeight="150"/>
+                        <TextBlock Text="辨識的結果" FontWeight="Bold" FontSize="20"/>
+                        <TextBox Text="{Binding KnowledgeResult}" MinHeight="150" FontSize="15"/>
                     </StackPanel>
                     <StackPanel Grid.Row="1" >
-                        <TextBlock Text="正確的課文"/>
-                        <TextBox Text="{Binding AccurateResult}" MinHeight="150"/>
+                        <TextBlock Text="正確的課文" FontWeight="Bold" FontSize="20"/>
+                        <!--<TextBox Text="{Binding AccurateResult}" MinHeight="150"/>-->
+                        <ItemsControl ItemsSource="{Binding AccurateResult}" BorderBrush="LightGray" BorderThickness="1" MinHeight="150">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="5,0,0,0">
+                                        <Hyperlink NavigateUri="{Binding Url}" RequestNavigate="Hyperlink_RequestNavigate">
+                                            <TextBlock Text="{Binding Text}"  FontSize="15"/>
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Content="換課文" Margin="0,0,0,0" FontSize="15" Padding="15,3" Command="{Binding ChangeTextCommand}"/>
                         </StackPanel>

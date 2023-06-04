@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
@@ -41,6 +42,7 @@ namespace MahAppBase.ViewModel
         #endregion
 
         #region Property
+        public ObservableCollection<Word> AccurateResult { get; set; } = new ObservableCollection<Word>();
         /// <summary>
         /// 開始錄音
         /// </summary>
@@ -268,18 +270,18 @@ namespace MahAppBase.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public string AccurateResult
-        {
-            get
-            {
-                return _AccurateResult;
-            }
-            set
-            {
-                _AccurateResult = value;
-                OnPropertyChanged();
-            }
-        }
+        //public string AccurateResult
+        //{
+        //    get
+        //    {
+        //        return _AccurateResult;
+        //    }
+        //    set
+        //    {
+        //        _AccurateResult = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         
         /// <summary>
         /// 
@@ -404,6 +406,7 @@ namespace MahAppBase.ViewModel
 
             }
         }
+        
 
         /// <summary>
         /// 取得目前段落文章
@@ -417,11 +420,26 @@ namespace MahAppBase.ViewModel
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                AccurateResult = response.Content;
+                AccurateResult.Clear();
+                var allWord = response.Content.Split(' ');
+                foreach(var item in allWord) 
+                {
+                    AccurateResult.Add(new Word()
+                    {
+                        Url = "https://tw.voicetube.com/definition/"+ item,
+                        Text = item
+                    });
+                }
+                
             }
             else 
             {
-                AccurateResult = "取得目前段落文章失敗。";
+                AccurateResult.Clear();
+                AccurateResult.Add(new Word()
+                {
+                    Url = "",
+                    Text = "取得目前段落文章失敗。"
+                });
             }
         }
 
@@ -438,7 +456,12 @@ namespace MahAppBase.ViewModel
             else 
             {
                 KnowledgeResult = "辛苦啦~治療結束，請通知助教";
-                AccurateResult = "辛苦啦~治療結束，請通知助教";
+                AccurateResult.Clear();
+                AccurateResult.Add(new Word() 
+                {
+                    Url = "",
+                    Text= "辛苦啦~治療結束，請通知助教"
+                });
             }
         }
 
@@ -488,7 +511,12 @@ namespace MahAppBase.ViewModel
                         }
                         else
                         {
-                            AccurateResult = "雲端語音辨識發生錯誤。";
+                            AccurateResult.Clear();
+                            AccurateResult.Add(new Word()
+                            {
+                                Url = "",
+                                Text = "雲端語音辨識發生錯誤。"
+                            });
                             UnlockAllButton();
                         }
                         IsDiagnosising = false;
@@ -523,7 +551,12 @@ namespace MahAppBase.ViewModel
             }
             else
             {
-                AccurateResult = "取得目前段落辨識結果發生錯誤。";
+                AccurateResult.Clear();
+                AccurateResult.Add(new Word()
+                {
+                    Url = "",
+                    Text = "取得目前段落辨識結果發生錯誤。"
+                });
             }
         }
 

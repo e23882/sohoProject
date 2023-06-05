@@ -15,7 +15,7 @@ namespace MahAppBase.ViewModel
         /// <summary>
         /// WebAPI URL
         /// </summary>
-        public const string BaseURL = "https://0883-114-35-31-137.ngrok-free.app";
+        public const string BaseURL = "https://c712-114-35-31-137.ngrok-free.app";
 
         /// <summary>
         /// 錄音、撥放相關物件實例變數
@@ -389,7 +389,7 @@ namespace MahAppBase.ViewModel
                 waveIn.DeviceNumber = 0;
                 waveIn.WaveFormat = new WaveFormat(44100, 2);
 
-                waveWriter = new WaveFileWriter("current.wav", waveIn.WaveFormat);
+                waveWriter = new WaveFileWriter("current.mp4", waveIn.WaveFormat);
                 waveIn.StartRecording();
                 RecordButtonContent = "停止錄音";
 
@@ -488,7 +488,7 @@ namespace MahAppBase.ViewModel
                     {
                         LockAllButton();
                         KnowledgeResult = "正在辨識你的語音，請稍後。。。。。";
-                        var client = new RestClient($"{BaseURL}/uploadAudioToCloudAndSTTThenSaveResult");
+                        var client = new RestClient($"{BaseURL}/uploadAudioToLocalAndSTTThenSaveResult");
                         var request = new RestRequest();
                         request.AddParameter("book", Book);
                         request.AddParameter("lesson", Lesson);
@@ -499,7 +499,7 @@ namespace MahAppBase.ViewModel
                             waveWriter.Close();
                             waveWriter = null;
                         }
-                        request.AddFile("file", "current.wav");
+                        request.AddFile("file", "current.mp4");
 
                         var response = client.Post(request);
 
@@ -537,12 +537,19 @@ namespace MahAppBase.ViewModel
 
         private void GetCurrentParagraphResult()
         {
-            var client = new RestClient($"{BaseURL}/getPartOfWERLessonText");
+            //var client = new RestClient($"{BaseURL}/getPartOfWERLessonText");
+            var client = new RestClient($"{BaseURL}/doTreatmentDiagnosisAndSaveResult");
+            
             var request = new RestRequest();
             request.AddParameter("book", Book);
             request.AddParameter("lesson", Lesson);
             request.AddParameter("studentID", StudentID);
-            request.AddParameter("part", CurrentStep-1);
+            string parameter = "";
+            foreach(Word item in AccurateResult) 
+            {
+                parameter += $"{item.Text} ";
+            }
+            request.AddParameter("lessonText", parameter);
             var response = client.Post(request);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -551,12 +558,16 @@ namespace MahAppBase.ViewModel
             }
             else
             {
-                AccurateResult.Clear();
-                AccurateResult.Add(new Word()
+                App.Current.Dispatcher.Invoke((Action)delegate 
                 {
-                    Url = "",
-                    Text = "取得目前段落辨識結果發生錯誤。"
+                    AccurateResult.Clear();
+                    AccurateResult.Add(new Word()
+                    {
+                        Url = "",
+                        Text = "取得目前段落辨識結果發生錯誤。"
+                    });
                 });
+                
             }
         }
 
@@ -641,7 +652,7 @@ namespace MahAppBase.ViewModel
                         waveWriter.Close();
                         waveWriter = null;
                     }
-                    request.AddFile("file", "current.wav");
+                    request.AddFile("file", "current.mp4");
 
                     var response = client.Post(request);
 
@@ -696,7 +707,7 @@ namespace MahAppBase.ViewModel
         {
             if (PlayRecordContent == "播放錄音")
             {
-                Play("current.wav");
+                Play("current.mp4");
             }
         }
 
@@ -716,7 +727,7 @@ namespace MahAppBase.ViewModel
                 waveIn.DeviceNumber = 0;
                 waveIn.WaveFormat = new WaveFormat(44100, 2);
               
-                waveWriter = new WaveFileWriter("current.wav", waveIn.WaveFormat);
+                waveWriter = new WaveFileWriter("current.mp4", waveIn.WaveFormat);
                 waveIn.StartRecording();
                 RecordButtonContent = "停止錄音";
             }
